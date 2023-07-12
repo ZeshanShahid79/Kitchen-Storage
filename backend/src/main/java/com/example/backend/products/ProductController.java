@@ -1,9 +1,8 @@
 package com.example.backend.products;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,5 +16,11 @@ public class ProductController {
     @GetMapping
     List<Product> getAllProducts() {
         return productService.getAllProducts();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    Product addProduct(@RequestBody ProductWithouthId productWithouthId) {
+        return productService.addProduct(productWithouthId);
     }
 }
